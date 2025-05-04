@@ -93,7 +93,7 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 		contentPane.add(lblPrecio);
 		
 		cbmodelo = new JComboBox();
-		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE ", "ADIDAS"}));
+		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE", "ADIDAS"}));
 		cbmodelo.setBounds(148, 44, 253, 23);
 		contentPane.add(cbmodelo);
 		
@@ -143,21 +143,35 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 	protected void actionPerformedBtnGuardar(ActionEvent e) {
 		
 		String modelo, talla;
+		double precio;
 		modelo=cbmodelo.getSelectedItem().toString();
 		talla=cbtalla.getSelectedItem().toString();
+		precio = Double.parseDouble(tfprecio.getText());
+		
 		
 		if (modelo==Modelo1 && talla=="S")
-			Precio1_S=Double.parseDouble(tfprecio.getText());
-		
+			Precio1_S=precio;
+		else if (modelo==Modelo1 && talla=="M")
+			Precio1_M=precio;
+		else if (modelo==Modelo1 && talla=="L")
+			Precio1_L=precio;
+		else if (modelo==Modelo1 && talla=="XL")
+			Precio1_XL=precio;
+		else if(modelo==Modelo2 && talla=="S")
+			Precio2_S=precio;
+		else if(modelo==Modelo2 && talla=="M")
+			Precio2_M=precio;
+		else if(modelo==Modelo2 && talla=="L")
+			Precio2_L=precio;
+		else if(modelo==Modelo2 && talla=="XL")
+			Precio2_XL=precio;
 
 	}
 	protected void actionPerformedBtnNewButton(ActionEvent e) 
-		
-		
-		{
-			String modelo, talla;
-			modelo=cbmodelo.getSelectedItem().toString();
-			talla=cbtalla.getSelectedItem().toString();
+	{
+		String modelo, talla;
+		modelo=cbmodelo.getSelectedItem().toString();
+		talla=cbtalla.getSelectedItem().toString();
 			
 		if (modelo==Modelo1 && talla=="S")
 			tfprecio.setText(String.valueOf(Precio1_S));
@@ -175,14 +189,14 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 			tfprecio.setText(String.valueOf(Precio2_L));
 		else if(modelo==Modelo2 && talla=="XL")
 			tfprecio.setText(String.valueOf(Precio2_XL));
+
 		if (modelo==Modelo1)
 			tfmaterial.setText(Material_1);
 		else
 			tfmaterial.setText(Material_2);
-			
 		}
 	}
-		
-	
-	
+
+
+
 
