@@ -1,0 +1,87 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+
+public class GRUPO_4 extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_5;
+	private JButton btnSIGUIENTE;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GRUPO_4 frame = new GRUPO_4();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public GRUPO_4() {
+		setTitle("Acerca de la Tienda - GRUPO_4");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 452, 373);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("NOMBRE DE TIENDA");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setBounds(116, 61, 225, 28);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("AUTORES");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_1.setBounds(177, 102, 86, 18);
+		contentPane.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("VANESSA GAMARRA.");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_2.setBounds(158, 130, 173, 18);
+		contentPane.add(lblNewLabel_2);
+		
+		lblNewLabel_3 = new JLabel("DILVER MAMANI.");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_3.setBounds(168, 158, 173, 18);
+		contentPane.add(lblNewLabel_3);
+		
+		lblNewLabel_4 = new JLabel("JEAN PAUL CONDOR.");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_4.setBounds(158, 186, 173, 18);
+		contentPane.add(lblNewLabel_4);
+		
+		lblNewLabel_5 = new JLabel("RAMIRO CHILO COCA.");
+		lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_5.setBounds(158, 214, 173, 18);
+		contentPane.add(lblNewLabel_5);
+		
+		btnSIGUIENTE = new JButton("CERRAR");
+		btnSIGUIENTE.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnSIGUIENTE.setBounds(177, 265, 109, 21);
+		contentPane.add(btnSIGUIENTE);
+	}
+}

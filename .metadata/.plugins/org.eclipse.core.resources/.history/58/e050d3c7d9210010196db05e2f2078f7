@@ -1,0 +1,84 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class EVALUACION_EMPLEADOS extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JButton btncalcular;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EVALUACION_EMPLEADOS frame = new EVALUACION_EMPLEADOS();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public EVALUACION_EMPLEADOS() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 603, 483);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("TARDANZA");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(39, 45, 119, 28);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("OBSERVACIONES");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(31, 106, 134, 33);
+		contentPane.add(lblNewLabel_1);
+		
+		btncalcular = new JButton("CALCULAR");
+		btncalcular.setBounds(457, 51, 110, 22);
+		contentPane.add(btncalcular);
+		
+		textField = new JTextField();
+		textField.setBounds(135, 52, 251, 28);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(187, 115, 199, 28);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(51, 206, 496, 201);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+	}
+
+}

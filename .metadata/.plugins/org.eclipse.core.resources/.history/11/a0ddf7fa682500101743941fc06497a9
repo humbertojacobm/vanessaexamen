@@ -1,0 +1,140 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class SUELDO_EMPLEADOS extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JButton btnprocesar;
+	private JLabel lblNewLabel_1;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
+	private JTextField tfsueldo;
+	
+
+	int CONTADOR_SUELDOS=0;
+
+	int CANTIDAD_SUELDOS1=0, CANTIDAD_SUELDOS2=0, CANTIDAD_SUELDOS3=0, CANTIDAD_SUELDOS4=0;
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SUELDO_EMPLEADOS frame = new SUELDO_EMPLEADOS();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public SUELDO_EMPLEADOS() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 556, 445);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("sueldo del empleado:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(35, 113, 163, 31);
+		contentPane.add(lblNewLabel);
+		
+		btnprocesar = new JButton("PROCESAR");
+		btnprocesar.addActionListener(this);
+		btnprocesar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnprocesar.setBounds(375, 119, 110, 21);
+		contentPane.add(btnprocesar);
+		
+		lblNewLabel_1 = new JLabel("sueldos de empleados");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(161, 39, 215, 21);
+		contentPane.add(lblNewLabel_1);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(65, 212, 426, 156);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+		
+		tfsueldo = new JTextField();
+		tfsueldo.setBounds(205, 121, 148, 23);
+		contentPane.add(tfsueldo);
+		tfsueldo.setColumns(10);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnprocesar) {
+			actionPerformedBtnprocesar(e);
+		}
+	}
+	protected void actionPerformedBtnprocesar(ActionEvent e) {
+		//DECLARACION DE VARIABLES
+
+				double SUELDO=0.00;
+
+		 
+
+				//ENTRADA DE DATOS
+
+				SUELDO = Double.parseDouble(tfsueldo.getText());
+
+		 
+
+				//PROCESO
+
+				if(SUELDO <= 2500)
+
+					CANTIDAD_SUELDOS1++;
+
+				else if(SUELDO > 2500 && SUELDO <= 3000)
+
+					CANTIDAD_SUELDOS2++;
+
+				else if(SUELDO > 3000 && SUELDO <= 3500)
+
+					CANTIDAD_SUELDOS3++;
+
+				else if(SUELDO > 3500)
+
+					CANTIDAD_SUELDOS4++;	
+
+		 
+
+				//MOSTRAR RESULTADOS
+
+				textArea.setText("Cantidad de sueldos menores o iguales a 2500: " + CANTIDAD_SUELDOS1 + "\n");
+
+				textArea.append("Cantidad de sueldos mayores de 2500 pero menores o iguales a 3000: " + CANTIDAD_SUELDOS2 + "\n");
+
+				textArea.append("Cantidad de sueldos mayores de 3000 pero menores o iguales a 3500:"+ CANTIDAD_SUELDOS3 + "\n") ;
+				
+				textArea.append("Cantidad de sueldos mayores a 3500 :"+ CANTIDAD_SUELDOS4 + "\n") ;
+
+		
+		
+	}
+}

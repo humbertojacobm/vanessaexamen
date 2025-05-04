@@ -1,0 +1,91 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class DULCERIA extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JComboBox comboBox;
+	private JLabel lblNewLabel_1;
+	private JTextField tFcantidaddechocolate;
+	private JButton btnNewButton;
+	private JScrollPane scrollPane;
+	private JTextArea txtresultado;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DULCERIA frame = new DULCERIA();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public DULCERIA() {
+		setTitle("VENTA DE CHOCOLATES");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 552, 434);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("TIPO DE CHOCOLATE :");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(10, 55, 154, 36);
+		contentPane.add(lblNewLabel);
+		
+		comboBox = new JComboBox();
+		comboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"PRIMOR", "DULZURA", "TENTACION", "EXPLOSION"}));
+		comboBox.setBounds(158, 56, 154, 36);
+		contentPane.add(comboBox);
+		
+		lblNewLabel_1 = new JLabel("CANTIDAD DE CHOCOLATES:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(10, 131, 199, 30);
+		contentPane.add(lblNewLabel_1);
+		
+		tFcantidaddechocolate = new JTextField();
+		tFcantidaddechocolate.setBounds(205, 131, 107, 36);
+		contentPane.add(tFcantidaddechocolate);
+		tFcantidaddechocolate.setColumns(10);
+		
+		btnNewButton = new JButton("Calcular");
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton.setBounds(366, 97, 143, 36);
+		contentPane.add(btnNewButton);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(48, 221, 449, 118);
+		contentPane.add(scrollPane);
+		
+		txtresultado = new JTextArea();
+		scrollPane.setViewportView(txtresultado);
+	}
+
+}

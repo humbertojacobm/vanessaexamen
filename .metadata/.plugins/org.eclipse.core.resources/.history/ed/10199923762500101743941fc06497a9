@@ -1,0 +1,142 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import static cibertec.variables.*;
+
+
+public class CONSULTAR_POLOS extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblTalla;
+	private JLabel lblPrecio;
+	private JComboBox cbmodelo;
+	private JTextField tfprecio;
+	private JButton btnCERRAR;
+	private JLabel lblMaterial;
+	private JTextField textField_3;
+	private JComboBox cbtalla;
+	private JButton btnCONSULTAR;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CONSULTAR_POLOS frame = new CONSULTAR_POLOS();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public CONSULTAR_POLOS() {
+		setTitle("CONSULTAR  PRODUCTO");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 496, 263);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("MODELO:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(33, 60, 93, 29);
+		contentPane.add(lblNewLabel);
+		
+		lblTalla = new JLabel("TALLA:");
+		lblTalla.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTalla.setBounds(33, 99, 93, 29);
+		contentPane.add(lblTalla);
+		
+		lblPrecio = new JLabel("PRECIO:");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblPrecio.setBounds(33, 182, 93, 29);
+		contentPane.add(lblPrecio);
+		
+		cbmodelo = new JComboBox();
+		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE", "ADIDAS"}));
+		cbmodelo.setBounds(123, 60, 176, 21);
+		contentPane.add(cbmodelo);
+		
+		tfprecio = new JTextField();
+		tfprecio.setEditable(false);
+		tfprecio.setBounds(121, 187, 178, 21);
+		contentPane.add(tfprecio);
+		tfprecio.setColumns(10);
+		
+		btnCERRAR = new JButton("CERRAR");
+		btnCERRAR.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCERRAR.setBounds(344, 115, 128, 29);
+		contentPane.add(btnCERRAR);
+		
+		lblMaterial = new JLabel("MATERIAL:");
+		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblMaterial.setBounds(33, 148, 74, 29);
+		contentPane.add(lblMaterial);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(121, 154, 178, 21);
+		contentPane.add(textField_3);
+		
+		cbtalla = new JComboBox();
+		cbtalla.setModel(new DefaultComboBoxModel(new String[] {"XL", "L", "M", "S"}));
+		cbtalla.setBounds(123, 104, 93, 24);
+		contentPane.add(cbtalla);
+		
+		btnCONSULTAR = new JButton("CONSULTAR");
+		btnCONSULTAR.addActionListener(this);
+		btnCONSULTAR.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnCONSULTAR.setBounds(344, 65, 128, 24);
+		contentPane.add(btnCONSULTAR);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCONSULTAR) {
+			actionPerformedBtnCONSULTAR(e);
+		}
+	}
+	protected void actionPerformedBtnCONSULTAR(ActionEvent e) {
+		String modelo, talla;
+		modelo=cbmodelo.getSelectedItem().toString();
+		talla=cbtalla.getSelectedItem().toString();
+		
+	if (modelo==Modelo1 && talla=="S")
+		tfprecio.setText(String.valueOf(Precio1_S));
+	else if (modelo==Modelo1 && talla=="M")
+		tfprecio.setText(String.valueOf(Precio1_M));
+	else if (modelo==Modelo1 && talla=="L")
+		tfprecio.setText(String.valueOf(Precio1_L));
+	else if (modelo==Modelo1 && talla=="XL")
+		tfprecio.setText(String.valueOf(Precio1_XL));
+	else if(modelo==Modelo2 && talla=="S")
+		tfprecio.setText(String.valueOf(Precio2_S));
+	else if(modelo==Modelo2 && talla=="M")
+		tfprecio.setText(String.valueOf(Precio2_M));
+	else if(modelo==Modelo2 && talla=="L")
+		tfprecio.setText(String.valueOf(Precio2_L));
+	else if(modelo==Modelo2 && talla=="XL")
+		tfprecio.setText(String.valueOf(Precio2_XL));
+		
+	}
+}

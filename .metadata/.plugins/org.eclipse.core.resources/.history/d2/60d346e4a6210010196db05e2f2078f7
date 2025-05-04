@@ -1,0 +1,205 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+
+public class EXAMENT2 extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JScrollPane scrollPane;
+	private JComboBox cbnumeroatendidos;
+	private JTextField tfnumerodeincidentes;
+	private JButton btnprocesar;
+	private JTextArea tAresultados;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					EXAMENT2 frame = new EXAMENT2();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public EXAMENT2() {
+		setTitle("EXAMENT2 GAMARRA VANESSA");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 574, 446);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("NUMERO DE INCIDENTES:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(10, 91, 175, 25);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("NUMERO SRS ATENDIDOS:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(10, 161, 175, 33);
+		contentPane.add(lblNewLabel_1);
+		
+		lblNewLabel_2 = new JLabel("SUELDO DE EMPLEADOS");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_2.setBounds(153, 32, 281, 25);
+		contentPane.add(lblNewLabel_2);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 234, 540, 145);
+		contentPane.add(scrollPane);
+		
+		tAresultados = new JTextArea();
+		scrollPane.setViewportView(tAresultados);
+		
+		cbnumeroatendidos = new JComboBox();
+		cbnumeroatendidos.setModel(new DefaultComboBoxModel(new String[] {"5", "4", "3", "2", "1"}));
+		cbnumeroatendidos.setFont(new Font("Tahoma", Font.BOLD, 13));
+		cbnumeroatendidos.setBounds(181, 168, 92, 26);
+		contentPane.add(cbnumeroatendidos);
+		
+		tfnumerodeincidentes = new JTextField();
+		tfnumerodeincidentes.setBounds(181, 95, 92, 33);
+		contentPane.add(tfnumerodeincidentes);
+		tfnumerodeincidentes.setColumns(10);
+		
+		btnprocesar = new JButton("PROCESAR");
+		btnprocesar.addActionListener(this);
+		btnprocesar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnprocesar.setBounds(390, 131, 131, 25);
+		contentPane.add(btnprocesar);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnprocesar) {
+			actionPerformedBtnprocesar(e);
+		}
+	}
+	protected void actionPerformedBtnprocesar(ActionEvent e) {
+		
+		//DECLARACION DE VARIABLES
+		int NUMERO_INCIDENTES, NUMERO_SRS_ATENDIDOS, PUNTAJE_NUMERO_INCIDENTES , PUNTAJE_SOLICITUD_REQUERIDOS_ATENDIDOS, PUNTAJE_TOTAL_EMPLEADO;
+		double SUELDO_BRUTO , SUELDO_NETO , SUELDO_MINIMO, DESCUENTO_AFP_SUNAT;
+		
+		//INICIALIZAR VARIABLES
+		
+		SUELDO_MINIMO=1025 ;
+
+		//ENTRADA DE DATOS
+				
+		 NUMERO_INCIDENTES= Integer.parseInt(tfnumerodeincidentes.getText());
+			
+		 NUMERO_SRS_ATENDIDOS= Integer.parseInt( cbnumeroatendidos.getSelectedItem().toString());
+		 
+		
+	}
+	
+	int OBTENER_PUNTAJE_NUMERO_INCIDENTES( int prm_NUMERO_INCIDENTES )  {
+		int PUNTAJE_NUMERO_INCIDENTES=0;
+	if (prm_NUMERO_INCIDENTES  >=20 )
+		PUNTAJE_NUMERO_INCIDENTES =100 ;
+	else if (prm_NUMERO_INCIDENTES >=15 &&  prm_NUMERO_INCIDENTES<=19)
+		 PUNTAJE_NUMERO_INCIDENTES=80 ;
+	else if  (prm_NUMERO_INCIDENTES>=10 && prm_NUMERO_INCIDENTES<=14)
+		PUNTAJE_NUMERO_INCIDENTES=60 ;
+	else if (prm_NUMERO_INCIDENTES>=5 && prm_NUMERO_INCIDENTES<=9)
+		PUNTAJE_NUMERO_INCIDENTES=40 ;
+	else if (prm_NUMERO_INCIDENTES>1 && prm_NUMERO_INCIDENTES<=4)
+		PUNTAJE_NUMERO_INCIDENTES=20;
+	return PUNTAJE_NUMERO_INCIDENTES ;
+	
+	}
+	
+	
+	int OBTENER_PUNTAJE_SOLICITUD_REQUERIDOS_ATENDIDOS(int prm_NUMERO_SRS_ATENDIDOS ) {
+		
+		switch(prm_NUMERO_SRS_ATENDIDOS) {
+		case 5:
+			return 100;
+		case 4 :
+			return 80;
+		case 3 :
+			return 60;
+		case 2:
+			return 40;
+		case 1:
+			return 20;	
+		default : 
+			return 0 ;
+			
+			}
+		}
+	
+	int calcular_puntaje_total_empleado( int prm_numero_incidente, int prm_puntaje_solicitud_requeridos_atendidos ) {
+		int puntaje_total_empleado=0;
+		puntaje_total_empleado=prm_numero_incidente + prm_puntaje_solicitud_requeridos_atendidos ;
+		return puntaje_total_empleado ;
+		
+	}
+	
+	double calcular_sueldo_bruto (int prm_puntaje_total, double prm_sueldo_minimo ) {
+		double sueldo_bruto=0;
+		 if (prm_puntaje_total ==200 )
+			      sueldo_bruto=5*prm_sueldo_minimo ;
+		 else if (prm_puntaje_total <=150 && prm_puntaje_total<=199) 
+		         sueldo_bruto=4.5*prm_sueldo_minimo ;
+		 	else if (prm_puntaje_total <=100 && prm_puntaje_total<=149) 
+		         sueldo_bruto=4*prm_sueldo_minimo ;
+			else if (prm_puntaje_total <=50 && prm_puntaje_total<=99 )
+		         sueldo_bruto=3.5*prm_sueldo_minimo ;
+			 else if (prm_puntaje_total <=50)
+				 sueldo_bruto=3*prm_sueldo_minimo ;
+		 return sueldo_bruto ;
+		 
+	}
+	
+	double calcular_sueldo_neto ( double prm_sueldo_bruto ) {
+		double sueldo_neto=0 ;
+	     double descuento_afp_sunat=0 ;	
+	     descuento_afp_sunat = 0.18 *prm_sueldo_bruto  ;
+	     sueldo_neto= prm_sueldo_bruto -descuento_afp_sunat ;
+	     return  sueldo_neto ;
+		
+	}
+	
+	
+	void Resultados( String prm_sueldo_bruto  ,String prm_sueldo_neto ) {
+
+		this.tAresultados.setText(" sueldo_bruto " + prm_sueldo_bruto  + "\n");
+
+		this.tAresultados.append(" sueldo neto " + prm_sueldo_neto + "\n");
+
+	
+
+	}
+	
+	
+	}
+

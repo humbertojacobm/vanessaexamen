@@ -1,0 +1,182 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.Font;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DULCERIA2 extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JComboBox cbtipo;
+	private JLabel lblNewLabel_1;
+	private JTextField tfcantidad;
+	private JButton btnprocesar;
+	private JLabel lblNewLabel_2;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					DULCERIA2 frame = new DULCERIA2();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public DULCERIA2() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 512, 423);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("tipo de chocolate:");
+		lblNewLabel.setBounds(30, 70, 109, 28);
+		contentPane.add(lblNewLabel);
+		
+		cbtipo = new JComboBox();
+		cbtipo.setModel(new DefaultComboBoxModel(new String[] {"PRIMOR", "DULZURA", "TENTACION", "EXPLOSION"}));
+		cbtipo.setBounds(167, 70, 142, 28);
+		contentPane.add(cbtipo);
+		
+		lblNewLabel_1 = new JLabel("cantidad:");
+		lblNewLabel_1.setBounds(30, 148, 90, 28);
+		contentPane.add(lblNewLabel_1);
+		
+		tfcantidad = new JTextField();
+		tfcantidad.setBounds(167, 151, 147, 23);
+		contentPane.add(tfcantidad);
+		tfcantidad.setColumns(10);
+		
+		btnprocesar = new JButton("procesar");
+		btnprocesar.addActionListener(this);
+		btnprocesar.setBounds(317, 109, 142, 28);
+		contentPane.add(btnprocesar);
+		
+		lblNewLabel_2 = new JLabel("DULCERIA");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewLabel_2.setBounds(188, 10, 204, 41);
+		contentPane.add(lblNewLabel_2);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(40, 206, 421, 151);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnprocesar) {
+			actionPerformedBtnprocesar(e);
+		}
+	}
+	protected void actionPerformedBtnprocesar(ActionEvent e) {
+		
+		//DECLARACION DE VARIABLES LOCALES
+		String TIPO_CHOCOLATE;
+		int CANTIDAD,CANTIDAD_CARAMELOS ;
+		double PRECIO_UNITARIO, IMPORTE_COMPRA, IMPORTE_DESCUENTO;
+		double IMPORTE_PAGAR;
+		
+		//ENTRADA DE DATOS 
+		TIPO_CHOCOLATE= Obtener_chocolate();
+		CANTIDAD= Obtener_cantidad();
+		//PROCESO
+		PRECIO_UNITARIO=Obtener_precio(TIPO_CHOCOLATE);
+		IMPORTE_COMPRA=Importe_compra(PRECIO_UNITARIO, CANTIDAD );
+		IMPORTE_DESCUENTO= Importe_Descuento(CANTIDAD,IMPORTE_COMPRA);
+		IMPORTE_PAGAR=importe_pagar(IMPORTE_COMPRA,IMPORTE_DESCUENTO);
+		CANTIDAD_CARAMELOS=Cantidad_caramelos(IMPORTE_PAGAR,CANTIDAD);
+		Resultados(IMPORTE_COMPRA,IMPORTE_DESCUENTO,IMPORTE_PAGAR,CANTIDAD_CARAMELOS);
+	}
+	String Obtener_chocolate() {
+		return cbtipo.getSelectedItem().toString();
+	}
+
+	int Obtener_cantidad() {
+		return Integer.parseInt(tfcantidad.getText());
+		
+	}
+	double Obtener_precio(String prm_tipo) {
+		switch(prm_tipo) {
+		case "PRIMOR":
+			return 8.5;
+		case "DULZURA" :
+			return 10.0;
+		case "TENTACION" :
+			return 7.0;
+		case "EXPLOSION":
+			return 12.5;
+		default : 
+			return 0.0 ;
+			
+			}
+		}
+	
+	double Importe_compra(double prm_precio, int prm_cantidad) {
+		return prm_precio*prm_cantidad;
+		
+		
+		
+	}
+	
+	double Importe_Descuento( int prm_cantidad , double prm_importe_compra) {
+		if(prm_cantidad<5)
+			return 0.04*prm_importe_compra;
+		else if (prm_cantidad>=5&& prm_cantidad <10)
+			return 0.065*prm_importe_compra;
+		else if (prm_cantidad>=10&& prm_cantidad <15)
+			return 0.09*prm_importe_compra;
+		else
+			return 0.0115*prm_importe_compra;
+	}
+	
+ double importe_pagar( double prm_imp_compra, double prm_imp_descto) {
+	 return prm_imp_compra-prm_imp_descto;
+	 
+ }
+	
+	int Cantidad_caramelos(double prm_imp_pagar , int prm_cantidad) {
+		if (prm_imp_pagar>250)
+			return 3*prm_cantidad;
+		else
+			return 2*prm_cantidad;
+		
+			
+	}
+	
+	void Resultados (double prm_imp_compra, double prm_imp_descto ,double prm_imp_pagar , int prm_caramelo) {
+		textArea.setText("IMPORTE COMPRA: "+prm_imp_compra + "\n");
+		textArea.append("IMPORTE DESCUENTO: "+prm_imp_descto+ "\n");
+		textArea.append("IMPORTE PAGAR : "+ prm_imp_pagar + "\n");
+		textArea.append(" CANTIDAD CARAMELO : "+ prm_caramelo) ;
+	}
+	
+}

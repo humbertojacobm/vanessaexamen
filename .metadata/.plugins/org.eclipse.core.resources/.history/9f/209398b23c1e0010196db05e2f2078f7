@@ -1,0 +1,173 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class PROMEDIO_PONDERADO extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JComboBox cBCategoria;
+	private JTextField tFPromedio;
+	private JButton btNCalcular;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PROMEDIO_PONDERADO frame = new PROMEDIO_PONDERADO();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	//DECLARACION DE VARIABLES 
+	
+	 double PROMEDIO_PONDERADO =0.0 ;
+	 double  DESCUENTO= 0.0 ;
+	 double PENSION_MENSUAL= 0.0;
+	 double NUEVA_PENSION= 0.0 ;
+	 double PUNTAJE_RENDIMIENTO = 0.0 ;
+	 String  CATEGORIA  ;
+
+	
+	
+	
+	
+	
+	/**
+	 * Create the frame.
+	 */
+	public PROMEDIO_PONDERADO() {
+		setTitle("PENSION_GAMARRA VANESSA");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 520, 397);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("CATEGORIA:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(10, 36, 162, 32);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("PROMEDIO PONDERADO:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_1.setBounds(10, 100, 194, 23);
+		contentPane.add(lblNewLabel_1);
+		
+		cBCategoria = new JComboBox();
+		cBCategoria.setFont(new Font("Tahoma", Font.BOLD, 15));
+		cBCategoria.setModel(new DefaultComboBoxModel(new String[] {"A", "B", "C", "D"}));
+		cBCategoria.setBounds(193, 44, 135, 24);
+		contentPane.add(cBCategoria);
+		
+		tFPromedio = new JTextField();
+		tFPromedio.setBounds(193, 104, 135, 23);
+		contentPane.add(tFPromedio);
+		tFPromedio.setColumns(10);
+		
+		btNCalcular = new JButton("CALCULAR");
+		btNCalcular.addActionListener(this);
+		btNCalcular.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btNCalcular.setBounds(371, 72, 104, 23);
+		contentPane.add(btNCalcular);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(52, 182, 419, 152);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+	}
+   
+	void ENTRADA_DATOS () {
+		
+  PROMEDIO_PONDERADO=Double.parseDouble(tFPromedio.getText()) ;
+  CATEGORIA= cBCategoria.getSelectedItem().toString();
+	
+}
+	
+	void OBTENER_CATEGORIA() {
+		
+		switch (CATEGORIA){	
+		case"A" : 
+			   PUNTAJE_RENDIMIENTO=550 ;
+			   break;
+		case"B" :
+			   PUNTAJE_RENDIMIENTO=500 ;
+			  break;
+		case"C" :
+			   PUNTAJE_RENDIMIENTO=460;
+			  break;
+		case"D": 
+			   PUNTAJE_RENDIMIENTO=400 ; 
+			   break;
+			   
+			 }	
+	}
+	
+	
+	void OBTENER_DESCUENTO () {
+		
+		if (PROMEDIO_PONDERADO>=0 && PROMEDIO_PONDERADO<=13.99) 
+				   DESCUENTO=0*PENSION_MENSUAL ;
+		else if (PROMEDIO_PONDERADO>=14 && PROMEDIO_PONDERADO <=15.99) 
+				      DESCUENTO=0.10*PENSION_MENSUAL;
+		else if (PROMEDIO_PONDERADO>=16 && PROMEDIO_PONDERADO<=17.99 )
+				         DESCUENTO=0.12* PENSION_MENSUAL ;
+		else if (PROMEDIO_PONDERADO>=18 && PROMEDIO_PONDERADO<=20.00 ) ;
+				           DESCUENTO=0.15* PENSION_MENSUAL;
+	}
+	
+	void obtener_nueva_pension () {
+		
+		NUEVA_PENSION= (PENSION_MENSUAL-DESCUENTO);
+	}
+	 
+	void mostrar_resultado() {
+		textArea.setText("MONTO DEL DESCUENTO: "+ DESCUENTO +"/n");
+		textArea.append(" NUEVA PENSION:  "+ NUEVA_PENSION );
+	
+
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btNCalcular) {
+			
+	
+			actionPerformedBtNCalcular(e);
+		}
+	}
+	protected void actionPerformedBtNCalcular(ActionEvent e) {
+		
+		ENTRADA_DATOS();
+		OBTENER_CATEGORIA ();
+		OBTENER_DESCUENTO () ;
+	
+		
+		 
+	}
+}

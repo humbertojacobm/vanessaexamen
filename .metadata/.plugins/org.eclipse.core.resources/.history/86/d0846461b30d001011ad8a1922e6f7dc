@@ -1,0 +1,54 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+
+public class MOCHILA1 extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					MOCHILA1 frame = new MOCHILA1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public MOCHILA1() {
+		setTitle("MOCHILA-GAMARRA VANESSA");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(10, 75, 92, -49);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("Modelo");
+		lblNewLabel_1.setBounds(20, 36, 113, 24);
+		contentPane.add(lblNewLabel_1);
+	}
+
+}

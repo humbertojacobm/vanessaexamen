@@ -1,0 +1,121 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Calcular_donacion extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JTextField tFdonacion;
+	private JButton btnPROCESAR;
+	private JButton btnBORRAR;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Calcular_donacion frame = new Calcular_donacion();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Calcular_donacion() {
+		setTitle("DONACIONES-GAMARRA VANESSA");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 569, 382);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("CALCULAR DONACIONES");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(191, 21, 158, 28);
+		contentPane.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("MONTO DE DONACIONES");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(58, 93, 140, 28);
+		contentPane.add(lblNewLabel_1);
+		
+		tFdonacion = new JTextField();
+		tFdonacion.setBounds(191, 99, 140, 22);
+		contentPane.add(tFdonacion);
+		tFdonacion.setColumns(10);
+		
+		btnPROCESAR = new JButton("PROCESAR");
+		btnPROCESAR.addActionListener(this);
+		btnPROCESAR.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnPROCESAR.setBounds(400, 100, 108, 21);
+		contentPane.add(btnPROCESAR);
+		
+		btnBORRAR = new JButton("BORRAR");
+		btnBORRAR.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnBORRAR.setBounds(400, 145, 108, 21);
+		contentPane.add(btnBORRAR);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(46, 206, 469, 114);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnPROCESAR) {
+			actionPerformedBtnPROCESAR(e);
+		}
+	}
+	protected void actionPerformedBtnPROCESAR(ActionEvent e) {
+		
+		//DECLARACION DE VARIABLE 
+		double Donacion, Centro_Salud , Comedor, Biblioteca , Escuela , Asilo ;
+		
+		//ENTRADA DE DATOS 
+		
+		Donacion= double.parsedouble(tFdonacion.getText()); 
+		
+		//PROCESO DE CALCULO 
+		
+		Centro_Salud = Donacion *0.25 ;
+		Escuela=Donacion *0.35 ; 
+		Comedor =Escuela *0.45 ;
+		Biblioteca=(Comedor+Escuela)*0.17 ;
+		Asilo = Donacion - (Centro_Salud +Escuela +Comedor +Biblioteca);
+		
+		//MOSTRAR RESULTADOS
+		textArea.append("centro de salud:"+Centro_Salud+"\n") ;
+		textArea.append("escuela:"+ Escuela +"\n") ;
+		textArea.append("comedor:"+ Comedor +"\n") ;
+		textArea.append("biblioteca:"+ Biblioteca+"\n") ;
+		textArea.append("asilo de ansianos :"+ Asilo ) ;
+		
+		
+	}
+}

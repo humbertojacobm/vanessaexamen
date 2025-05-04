@@ -1,0 +1,113 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class CONSULTAR_POLOS extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JLabel lblTalla;
+	private JLabel lblPrecio;
+	private JComboBox comboBox;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JButton btnCERRAR;
+	private JLabel lblNewLabel_1;
+	private JTextField textField_2;
+	private JLabel lblMaterial;
+	private JTextField textField_3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					CONSULTAR_POLOS frame = new CONSULTAR_POLOS();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public CONSULTAR_POLOS() {
+		setTitle("CONSULTAR  PRODUCTO");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 496, 263);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("MODELO:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel.setBounds(33, 60, 93, 29);
+		contentPane.add(lblNewLabel);
+		
+		lblTalla = new JLabel("TALLA:");
+		lblTalla.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblTalla.setBounds(33, 121, 93, 29);
+		contentPane.add(lblTalla);
+		
+		lblPrecio = new JLabel("PRECIO:");
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblPrecio.setBounds(33, 182, 93, 29);
+		contentPane.add(lblPrecio);
+		
+		comboBox = new JComboBox();
+		comboBox.setBounds(123, 60, 176, 21);
+		contentPane.add(comboBox);
+		
+		textField = new JTextField();
+		textField.setBounds(123, 121, 176, 23);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setBounds(121, 187, 178, 21);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		btnCERRAR = new JButton("CERRAR");
+		btnCERRAR.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnCERRAR.setBounds(348, 49, 128, 29);
+		contentPane.add(btnCERRAR);
+		
+		lblNewLabel_1 = new JLabel(" COLOR:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblNewLabel_1.setBounds(33, 99, 55, 13);
+		contentPane.add(lblNewLabel_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(123, 88, 176, 23);
+		contentPane.add(textField_2);
+		
+		lblMaterial = new JLabel("MATERIAL:");
+		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblMaterial.setBounds(33, 148, 74, 29);
+		contentPane.add(lblMaterial);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(121, 154, 178, 21);
+		contentPane.add(textField_3);
+	}
+}

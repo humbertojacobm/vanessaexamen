@@ -1,0 +1,74 @@
+package cibertec;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+public class SUELDO_EMPLEADOS extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel lblNewLabel;
+	private JButton btnprocesar;
+	private JLabel lblNewLabel_1;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					SUELDO_EMPLEADOS frame = new SUELDO_EMPLEADOS();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public SUELDO_EMPLEADOS() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 556, 445);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		lblNewLabel = new JLabel("sueldo del empleado:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(36, 86, 163, 31);
+		contentPane.add(lblNewLabel);
+		
+		btnprocesar = new JButton("PROCESAR");
+		btnprocesar.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnprocesar.setBounds(375, 119, 110, 21);
+		contentPane.add(btnprocesar);
+		
+		lblNewLabel_1 = new JLabel("sueldos de empleados");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNewLabel_1.setBounds(161, 39, 215, 21);
+		contentPane.add(lblNewLabel_1);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(65, 212, 426, 156);
+		contentPane.add(scrollPane);
+		
+		textArea = new JTextArea();
+		scrollPane.setViewportView(textArea);
+	}
+
+}
