@@ -86,6 +86,7 @@ public class CONSULTAR_POLOS extends JFrame implements ActionListener {
 		tfprecio.setColumns(10);
 		
 		btnCERRAR = new JButton("CERRAR");
+		btnCERRAR.addActionListener(this);
 		btnCERRAR.setFont(new Font("Tahoma", Font.BOLD, 12));
 		btnCERRAR.setBounds(344, 115, 128, 29);
 		contentPane.add(btnCERRAR);
@@ -112,6 +113,9 @@ public class CONSULTAR_POLOS extends JFrame implements ActionListener {
 		contentPane.add(btnCONSULTAR);
 	}
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnCERRAR) {
+			actionPerformedBtnCERRAR(e);
+		}
 		if (e.getSource() == btnCONSULTAR) {
 			actionPerformedBtnCONSULTAR(e);
 		}
@@ -142,5 +146,8 @@ public class CONSULTAR_POLOS extends JFrame implements ActionListener {
 	else
 		tfmaterial.setText(Material_2);
 		
+	}
+	protected void actionPerformedBtnCERRAR(ActionEvent e) {
+		dispose();
 	}
 }

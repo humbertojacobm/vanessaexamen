@@ -108,6 +108,7 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 		contentPane.add(tfprecio);
 		
 		btncerrar = new JButton("CERRAR");
+		btncerrar.addActionListener(this);
 		btncerrar.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btncerrar.setBounds(455, 45, 114, 29);
 		contentPane.add(btncerrar);
@@ -133,6 +134,9 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 	
 	
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btncerrar) {
+			actionPerformedBtncerrar(e);
+		}
 		if (e.getSource() == btconsultar) {
 			actionPerformedBtnNewButton(e);
 		}
@@ -195,7 +199,10 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 		else
 			tfmaterial.setText(Material_2);
 		}
+	protected void actionPerformedBtncerrar(ActionEvent e) {
+		dispose();
 	}
+}
 
 
 
