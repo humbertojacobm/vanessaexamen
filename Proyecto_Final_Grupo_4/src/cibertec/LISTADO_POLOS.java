@@ -10,8 +10,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class LISTADO_POLOS extends JFrame {
+public class LISTADO_POLOS extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
@@ -55,14 +57,89 @@ public class LISTADO_POLOS extends JFrame {
 		scrollPane.setViewportView(textArea);
 		
 		btnNewButton = new JButton("CERRAR");
+		btnNewButton.addActionListener(this);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton.setBounds(137, 302, 125, 32);
 		contentPane.add(btnNewButton);
 		
 		btnNewButton_1 = new JButton("LISTAR");
+		btnNewButton_1.addActionListener(this);
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton_1.setBounds(292, 302, 125, 32);
 		contentPane.add(btnNewButton_1);
 	}
 
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			actionPerformedBtnNewButton(e);
+		}
+		if (e.getSource() == btnNewButton_1) {
+			actionPerformedBtnNewButton_1(e);
+		}
+	}
+	protected void actionPerformedBtnNewButton_1(ActionEvent e) {
+		//Displaying polo information
+		textArea.setText(""); // Clear previous content
+		
+		textArea.append("LISTA DE PRENDAS\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 1
+		textArea.append("MODELO: " + variables.Modelo1 + "\n");
+		textArea.append("TALLA: S\n");
+		textArea.append("MATERIAL: " + variables.Material_1 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio1_S + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 1 - Size M
+		textArea.append("MODELO: " + variables.Modelo1 + "\n");
+		textArea.append("TALLA: M\n");
+		textArea.append("MATERIAL: " + variables.Material_1 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio1_M + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 1 - Size L
+		textArea.append("MODELO: " + variables.Modelo1 + "\n");
+		textArea.append("TALLA: L\n");
+		textArea.append("MATERIAL: " + variables.Material_1 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio1_L + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 1 - Size XL
+		textArea.append("MODELO: " + variables.Modelo1 + "\n");
+		textArea.append("TALLA: XL\n");
+		textArea.append("MATERIAL: " + variables.Material_1 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio1_XL + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 2
+		textArea.append("MODELO: " + variables.Modelo2 + "\n");
+		textArea.append("TALLA: S\n");
+		textArea.append("MATERIAL: " + variables.Material_2 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio2_S + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 2 - Size M
+		textArea.append("MODELO: " + variables.Modelo2 + "\n");
+		textArea.append("TALLA: M\n");
+		textArea.append("MATERIAL: " + variables.Material_2 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio2_M + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 2 - Size L
+		textArea.append("MODELO: " + variables.Modelo2 + "\n");
+		textArea.append("TALLA: L\n");
+		textArea.append("MATERIAL: " + variables.Material_2 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio2_L + "\n");
+		textArea.append("-----------------------------\n");
+		
+		// Polo 2 - Size XL
+		textArea.append("MODELO: " + variables.Modelo2 + "\n");
+		textArea.append("TALLA: XL\n");
+		textArea.append("MATERIAL: " + variables.Material_2 + "\n");
+		textArea.append("PRECIO: S/. " + variables.Precio2_XL + "\n");
+	}
+	protected void actionPerformedBtnNewButton(ActionEvent e) {
+		this.dispose();
+	}
 }
