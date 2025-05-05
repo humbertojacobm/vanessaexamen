@@ -29,6 +29,8 @@ import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.ActionEvent;
 
 public class VENTA_POLOS extends JFrame implements ActionListener {
@@ -118,6 +120,11 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		cbmodelo = new JComboBox();
 		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE", "ADIDAS"}));
 		cbmodelo.setBounds(189, 76, 200, 29);
+		cbmodelo.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				modeloItemStateChanged(e);
+			}
+		});
 		contentPane.add(cbmodelo);
 		
 		scrollPane = new JScrollPane();
@@ -164,6 +171,17 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		lblMaterialDisplay.setBounds(189, 158, 200, 28);
 		contentPane.add(lblMaterialDisplay);
 	}
+
+	// Method to handle ItemListener events for cbmodelo
+	protected void modeloItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			String modelo = cbmodelo.getSelectedItem().toString();
+			String talla;
+			talla=cbtalla.getSelectedItem().toString();
+			updatePriceAndMaterial(modelo, talla);
+		}
+	}
+	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnconsultar) {
 			actionPerformedBtnconsultar(e);
@@ -187,6 +205,10 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		modelo=cbmodelo.getSelectedItem().toString();
 		talla=cbtalla.getSelectedItem().toString();
 		
+		updatePriceAndMaterial(modelo, talla);
+	}
+	
+	private void updatePriceAndMaterial(String modelo, String talla) {
 		if (modelo==Modelo1 && talla=="S")
 			lblPrecioDisplay.setText(String.valueOf(Precio1_S));
 		else if (modelo==Modelo1 && talla=="M")
