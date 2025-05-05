@@ -197,6 +197,7 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		double importDescuento = 0;
 		double descuento = 0;
 		double importePagar = 0;
+		String obsequio = "";
 		
 		if(cantidadDelProceso>=1 && cantidadDelProceso<=5) {
 			descuento=Des1*0.01;
@@ -212,6 +213,14 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		
 		importePagar = importeCompra - importDescuento;
 		
+		if(cantidadDelProceso==1) {
+			obsequio = Obs1;
+		}else if(cantidadDelProceso>1 && cantidadDelProceso<=5) {
+			obsequio = Obs2;
+		}else if(cantidadDelProceso>=6) {
+			obsequio = Obs3;
+		}
+		
 		txtVentaReporte.setText(""); 
 		
 		txtVentaReporte.append("BOLETA DE VENTA\n");
@@ -225,6 +234,7 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		txtVentaReporte.append("IMPORTE COMPRA: S/. " + importeCompra + "\n");
 		txtVentaReporte.append("IMPORTE DESCUENTO: S/. " + importDescuento + "\n");
 		txtVentaReporte.append("IMPORTE A PAGAR: S/. " + importePagar + "\n");
+		txtVentaReporte.append("OBSEQUIO: " + obsequio + "\n");
 		txtVentaReporte.append("-----------------------------\n");
 		
 	}
