@@ -142,6 +142,11 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		cbtalla = new JComboBox();
 		cbtalla.setModel(new DefaultComboBoxModel(new String[] {"S", "M", "L", "XL"}));
 		cbtalla.setBounds(189, 116, 200, 29);
+		cbtalla.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				tallaItemStateChanged(e);
+			}
+		});
 		contentPane.add(cbtalla);
 		
 		btnconsultar = new JButton("CONSULTAR");
@@ -172,13 +177,15 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		contentPane.add(lblMaterialDisplay);
 	}
 
-	// Method to handle ItemListener events for cbmodelo
 	protected void modeloItemStateChanged(ItemEvent e) {
 		if (e.getStateChange() == ItemEvent.SELECTED) {
-			String modelo = cbmodelo.getSelectedItem().toString();
-			String talla;
-			talla=cbtalla.getSelectedItem().toString();
-			updatePriceAndMaterial(modelo, talla);
+			refreshPriceAndMaterial();
+		}
+	}
+	
+	protected void tallaItemStateChanged(ItemEvent e) {
+		if (e.getStateChange() == ItemEvent.SELECTED) {
+			refreshPriceAndMaterial();
 		}
 	}
 	
@@ -200,12 +207,7 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		this.dispose();
 	}
 	protected void actionPerformedBtnconsultar(ActionEvent e) {
-		//
-		String modelo, talla;
-		modelo=cbmodelo.getSelectedItem().toString();
-		talla=cbtalla.getSelectedItem().toString();
-		
-		updatePriceAndMaterial(modelo, talla);
+		refreshPriceAndMaterial();
 	}
 	
 	private void updatePriceAndMaterial(String modelo, String talla) {
@@ -230,5 +232,11 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 			this.lblMaterialDisplay.setText(Material_1);
 		else
 			this.lblMaterialDisplay.setText(Material_2);
+	}
+
+	private void refreshPriceAndMaterial() {
+		String modelo = cbmodelo.getSelectedItem().toString();
+		String talla = cbtalla.getSelectedItem().toString();
+		updatePriceAndMaterial(modelo, talla);
 	}
 }
