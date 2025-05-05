@@ -17,5 +17,17 @@ public class variables {
 	public static double Precio2_S=60.00;
 	public static String Material_2="algodon pima";
 	
+	//DESCUENTOS POR CANTIDAD DE PRODUCTOS ADQUIRIDOS
+		public static double Des1=2.00;
+		public static double Des2=3.00;
+		public static double Des3=6.00;
+		public static double Des4=10.00;
+		
+		//OBSEQUIOS
+		public static String Obs1="LAPIZ";
+		public static String Obs2="CUADERNO";
+		public static String Obs3="LLAVERO";
+		
+	
 	
 }

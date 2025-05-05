@@ -13,6 +13,8 @@ import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
 
 public class VENTA_POLOS extends JFrame {
 
@@ -20,11 +22,11 @@ public class VENTA_POLOS extends JFrame {
 	private JLabel lblNewLabel;
 	private JLabel lblPrecio;
 	private JLabel lblCantidad;
-	private JButton btnVENDER;
+	private JButton btnagregar;
 	private JButton btnCERRAR;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JComboBox comboBox;
+	private JTextField tfprecio;
+	private JTextField tfcantidad;
+	private JComboBox cbmodelo;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
 
@@ -63,38 +65,39 @@ public class VENTA_POLOS extends JFrame {
 		
 		lblPrecio = new JLabel("PRECIO :");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPrecio.setBounds(64, 126, 161, 29);
+		lblPrecio.setBounds(64, 178, 161, 29);
 		contentPane.add(lblPrecio);
 		
 		lblCantidad = new JLabel("CANTIDAD : ");
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCantidad.setBounds(64, 178, 161, 29);
+		lblCantidad.setBounds(64, 218, 161, 29);
 		contentPane.add(lblCantidad);
 		
-		btnVENDER = new JButton("VENDER");
-		btnVENDER.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVENDER.setBounds(653, 92, 149, 29);
-		contentPane.add(btnVENDER);
+		btnagregar = new JButton("AGREGAR");
+		btnagregar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnagregar.setBounds(653, 139, 149, 29);
+		contentPane.add(btnagregar);
 		
 		btnCERRAR = new JButton("CERRAR");
 		btnCERRAR.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCERRAR.setBounds(653, 131, 149, 29);
+		btnCERRAR.setBounds(653, 218, 149, 29);
 		contentPane.add(btnCERRAR);
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setBounds(189, 126, 200, 28);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		tfprecio = new JTextField();
+		tfprecio.setEditable(false);
+		tfprecio.setBounds(189, 179, 200, 28);
+		contentPane.add(tfprecio);
+		tfprecio.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(189, 175, 200, 29);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		tfcantidad = new JTextField();
+		tfcantidad.setBounds(189, 220, 200, 29);
+		contentPane.add(tfcantidad);
+		tfcantidad.setColumns(10);
 		
-		comboBox = new JComboBox();
-		comboBox.setBounds(189, 76, 200, 29);
-		contentPane.add(comboBox);
+		cbmodelo = new JComboBox();
+		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE ", "ADIDAS"}));
+		cbmodelo.setBounds(189, 76, 200, 29);
+		contentPane.add(cbmodelo);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(62, 289, 740, 175);
@@ -102,6 +105,35 @@ public class VENTA_POLOS extends JFrame {
 		
 		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+		
+		JLabel lblNewLabel_1 = new JLabel("TALLA:");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_1.setBounds(64, 140, 83, 27);
+		contentPane.add(lblNewLabel_1);
+		
+		JComboBox cbtalla = new JComboBox();
+		cbtalla.setModel(new DefaultComboBoxModel(new String[] {"S", "M", "L", "XL"}));
+		cbtalla.setBounds(189, 136, 200, 29);
+		contentPane.add(cbtalla);
+		
+		JButton btnconsultar = new JButton("CONSULTAR");
+		btnconsultar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnconsultar.setBounds(653, 88, 149, 29);
+		contentPane.add(btnconsultar);
+		
+		JButton btncalculartotal = new JButton("CALCULAR_TOTAL");
+		btncalculartotal.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btncalculartotal.setBounds(653, 183, 149, 29);
+		contentPane.add(btncalculartotal);
+		
+		JLabel lbltotal = new JLabel("TOTAL:");
+		lbltotal.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lbltotal.setVerticalAlignment(SwingConstants.BOTTOM);
+		lbltotal.setBounds(588, 475, 70, 25);
+		contentPane.add(lbltotal);
+		
+		JLabel lblmostrartotal = new JLabel("New label");
+		lblmostrartotal.setBounds(673, 475, 129, 28);
+		contentPane.add(lblmostrartotal);
 	}
-
 }

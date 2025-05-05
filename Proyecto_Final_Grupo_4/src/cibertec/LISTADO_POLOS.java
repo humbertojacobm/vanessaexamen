@@ -79,7 +79,7 @@ public class LISTADO_POLOS extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnNewButton_1(ActionEvent e) {
 		//Displaying polo information
-		textArea.setText(""); // Clear previous content
+		textArea.setText(""); 
 		
 		textArea.append("LISTA DE PRENDAS\n");
 		textArea.append("-----------------------------\n");

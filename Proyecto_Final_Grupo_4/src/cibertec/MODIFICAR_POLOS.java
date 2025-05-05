@@ -146,29 +146,37 @@ public class MODIFICAR_POLOS extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnGuardar(ActionEvent e) {
 		
-		String modelo, talla;
+		String modelo, talla ,material;
 		double precio;
 		modelo=cbmodelo.getSelectedItem().toString();
 		talla=cbtalla.getSelectedItem().toString();
 		precio = Double.parseDouble(tfprecio.getText());
+		material= tfmaterial.getText();
 		
-		
-		if (modelo==Modelo1 && talla=="S")
+		if (modelo==Modelo1 && talla=="S") {
 			Precio1_S=precio;
-		else if (modelo==Modelo1 && talla=="M")
+		   Material_1=material;}
+		else if (modelo==Modelo1 && talla=="M") {
 			Precio1_M=precio;
-		else if (modelo==Modelo1 && talla=="L")
+		Material_1=material;}
+		else if (modelo==Modelo1 && talla=="L") {
 			Precio1_L=precio;
-		else if (modelo==Modelo1 && talla=="XL")
+		Material_1=material;}
+		else if (modelo==Modelo1 && talla=="XL") {
 			Precio1_XL=precio;
-		else if(modelo==Modelo2 && talla=="S")
+		Material_1=material;}
+		else if(modelo==Modelo2 && talla=="S") {
 			Precio2_S=precio;
-		else if(modelo==Modelo2 && talla=="M")
+		Material_2=material;}
+		else if(modelo==Modelo2 && talla=="M") {
 			Precio2_M=precio;
-		else if(modelo==Modelo2 && talla=="L")
+			Material_2=material;}
+		else if(modelo==Modelo2 && talla=="L") {
 			Precio2_L=precio;
-		else if(modelo==Modelo2 && talla=="XL")
+			Material_2=material;}
+		else if(modelo==Modelo2 && talla=="XL") {
 			Precio2_XL=precio;
+			Material_2=material;}
 
 	}
 	protected void actionPerformedBtnNewButton(ActionEvent e) 
