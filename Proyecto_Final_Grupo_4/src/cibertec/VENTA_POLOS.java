@@ -47,7 +47,6 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 	private JComboBox cbtalla;
 	private JScrollPane scrollPane;
 	private JTextArea txtVentaReporte;
-	private JButton btnconsultar;
 	private JLabel lblMateriallabel;
 	private JTextField lblMaterialDisplay;
 
@@ -97,13 +96,13 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		btnSell = new JButton("VENDER");
 		btnSell.addActionListener(this);
 		btnSell.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSell.setBounds(653, 128, 149, 29);
+		btnSell.setBounds(653, 76, 149, 29);
 		contentPane.add(btnSell);
 		
 		btnCERRAR = new JButton("CERRAR");
 		btnCERRAR.addActionListener(this);
 		btnCERRAR.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCERRAR.setBounds(653, 168, 149, 29);
+		btnCERRAR.setBounds(653, 117, 149, 29);
 		contentPane.add(btnCERRAR);
 		
 		lblPrecioDisplay = new JTextField();
@@ -149,12 +148,6 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		});
 		contentPane.add(cbtalla);
 		
-		btnconsultar = new JButton("CONSULTAR");
-		btnconsultar.addActionListener(this);
-		btnconsultar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnconsultar.setBounds(653, 88, 149, 29);
-		contentPane.add(btnconsultar);
-		
 		JLabel lbltotal = new JLabel("TOTAL:");
 		lbltotal.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lbltotal.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -175,6 +168,7 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 		lblMaterialDisplay.setColumns(10);
 		lblMaterialDisplay.setBounds(189, 158, 200, 28);
 		contentPane.add(lblMaterialDisplay);
+		this.refreshPriceAndMaterial();
 	}
 
 	protected void modeloItemStateChanged(ItemEvent e) {
@@ -190,9 +184,6 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnconsultar) {
-			actionPerformedBtnconsultar(e);
-		}
 		if (e.getSource() == btnCERRAR) {
 			actionPerformedBtnCERRAR(e);
 		}
@@ -202,12 +193,20 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 	}
 	protected void actionPerformedBtnagregar(ActionEvent e) {
 		
+		txtVentaReporte.setText(""); 
+		
+		txtVentaReporte.append("BOLETA DE VENTA\n");
+		txtVentaReporte.append("-----------------------------\n");
+		
+		txtVentaReporte.append("MODELO: " + cbmodelo.getSelectedItem().toString() + "\n");
+		txtVentaReporte.append("TALLA: "+ cbtalla.getSelectedItem().toString() +"\n");
+		txtVentaReporte.append("MATERIAL: " + lblMaterialDisplay.getText() + "\n");
+		txtVentaReporte.append("PRECIO: S/. " + lblPrecioDisplay.getText() + "\n");
+		txtVentaReporte.append("-----------------------------\n");
+		
 	}
 	protected void actionPerformedBtnCERRAR(ActionEvent e) {
 		this.dispose();
-	}
-	protected void actionPerformedBtnconsultar(ActionEvent e) {
-		refreshPriceAndMaterial();
 	}
 	
 	private void updatePriceAndMaterial(String modelo, String talla) {
