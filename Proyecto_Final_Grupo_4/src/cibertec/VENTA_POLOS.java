@@ -1,5 +1,18 @@
 package cibertec;
 
+import static cibertec.variables.Material_1;
+import static cibertec.variables.Material_2;
+import static cibertec.variables.Modelo1;
+import static cibertec.variables.Modelo2;
+import static cibertec.variables.Precio1_L;
+import static cibertec.variables.Precio1_M;
+import static cibertec.variables.Precio1_S;
+import static cibertec.variables.Precio1_XL;
+import static cibertec.variables.Precio2_L;
+import static cibertec.variables.Precio2_M;
+import static cibertec.variables.Precio2_S;
+import static cibertec.variables.Precio2_XL;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -15,20 +28,26 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class VENTA_POLOS extends JFrame {
+public class VENTA_POLOS extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JLabel lblNewLabel;
 	private JLabel lblPrecio;
 	private JLabel lblCantidad;
-	private JButton btnagregar;
+	private JButton btnSell;
 	private JButton btnCERRAR;
-	private JTextField tfprecio;
+	private JTextField lblPrecioDisplay;
 	private JTextField tfcantidad;
 	private JComboBox cbmodelo;
+	private JComboBox cbtalla;
 	private JScrollPane scrollPane;
-	private JTextArea textArea;
+	private JTextArea txtVentaReporte;
+	private JButton btnconsultar;
+	private JLabel lblMateriallabel;
+	private JTextField lblMaterialDisplay;
 
 	/**
 	 * Launch the application.
@@ -65,37 +84,39 @@ public class VENTA_POLOS extends JFrame {
 		
 		lblPrecio = new JLabel("PRECIO :");
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblPrecio.setBounds(64, 178, 161, 29);
+		lblPrecio.setBounds(64, 209, 161, 29);
 		contentPane.add(lblPrecio);
 		
 		lblCantidad = new JLabel("CANTIDAD : ");
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblCantidad.setBounds(64, 218, 161, 29);
+		lblCantidad.setBounds(64, 249, 161, 29);
 		contentPane.add(lblCantidad);
 		
-		btnagregar = new JButton("AGREGAR");
-		btnagregar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnagregar.setBounds(653, 139, 149, 29);
-		contentPane.add(btnagregar);
+		btnSell = new JButton("VENDER");
+		btnSell.addActionListener(this);
+		btnSell.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnSell.setBounds(653, 128, 149, 29);
+		contentPane.add(btnSell);
 		
 		btnCERRAR = new JButton("CERRAR");
+		btnCERRAR.addActionListener(this);
 		btnCERRAR.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCERRAR.setBounds(653, 218, 149, 29);
+		btnCERRAR.setBounds(653, 168, 149, 29);
 		contentPane.add(btnCERRAR);
 		
-		tfprecio = new JTextField();
-		tfprecio.setEditable(false);
-		tfprecio.setBounds(189, 179, 200, 28);
-		contentPane.add(tfprecio);
-		tfprecio.setColumns(10);
+		lblPrecioDisplay = new JTextField();
+		lblPrecioDisplay.setEditable(false);
+		lblPrecioDisplay.setBounds(189, 210, 200, 28);
+		contentPane.add(lblPrecioDisplay);
+		lblPrecioDisplay.setColumns(10);
 		
 		tfcantidad = new JTextField();
-		tfcantidad.setBounds(189, 220, 200, 29);
+		tfcantidad.setBounds(189, 249, 200, 29);
 		contentPane.add(tfcantidad);
 		tfcantidad.setColumns(10);
 		
 		cbmodelo = new JComboBox();
-		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE ", "ADIDAS"}));
+		cbmodelo.setModel(new DefaultComboBoxModel(new String[] {"NIKE", "ADIDAS"}));
 		cbmodelo.setBounds(189, 76, 200, 29);
 		contentPane.add(cbmodelo);
 		
@@ -103,28 +124,24 @@ public class VENTA_POLOS extends JFrame {
 		scrollPane.setBounds(62, 289, 740, 175);
 		contentPane.add(scrollPane);
 		
-		textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
+		txtVentaReporte = new JTextArea();
+		scrollPane.setViewportView(txtVentaReporte);
 		
 		JLabel lblNewLabel_1 = new JLabel("TALLA:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_1.setBounds(64, 140, 83, 27);
+		lblNewLabel_1.setBounds(64, 118, 83, 27);
 		contentPane.add(lblNewLabel_1);
 		
-		JComboBox cbtalla = new JComboBox();
+		cbtalla = new JComboBox();
 		cbtalla.setModel(new DefaultComboBoxModel(new String[] {"S", "M", "L", "XL"}));
-		cbtalla.setBounds(189, 136, 200, 29);
+		cbtalla.setBounds(189, 116, 200, 29);
 		contentPane.add(cbtalla);
 		
-		JButton btnconsultar = new JButton("CONSULTAR");
+		btnconsultar = new JButton("CONSULTAR");
+		btnconsultar.addActionListener(this);
 		btnconsultar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnconsultar.setBounds(653, 88, 149, 29);
 		contentPane.add(btnconsultar);
-		
-		JButton btncalculartotal = new JButton("CALCULAR_TOTAL");
-		btncalculartotal.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btncalculartotal.setBounds(653, 183, 149, 29);
-		contentPane.add(btncalculartotal);
 		
 		JLabel lbltotal = new JLabel("TOTAL:");
 		lbltotal.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -135,5 +152,61 @@ public class VENTA_POLOS extends JFrame {
 		JLabel lblmostrartotal = new JLabel("New label");
 		lblmostrartotal.setBounds(673, 475, 129, 28);
 		contentPane.add(lblmostrartotal);
+		
+		lblMateriallabel = new JLabel("MATERIAL:");
+		lblMateriallabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblMateriallabel.setBounds(64, 157, 161, 29);
+		contentPane.add(lblMateriallabel);
+		
+		lblMaterialDisplay = new JTextField();
+		lblMaterialDisplay.setEditable(false);
+		lblMaterialDisplay.setColumns(10);
+		lblMaterialDisplay.setBounds(189, 158, 200, 28);
+		contentPane.add(lblMaterialDisplay);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnconsultar) {
+			actionPerformedBtnconsultar(e);
+		}
+		if (e.getSource() == btnCERRAR) {
+			actionPerformedBtnCERRAR(e);
+		}
+		if (e.getSource() == btnSell) {
+			actionPerformedBtnagregar(e);
+		}
+	}
+	protected void actionPerformedBtnagregar(ActionEvent e) {
+		
+	}
+	protected void actionPerformedBtnCERRAR(ActionEvent e) {
+		this.dispose();
+	}
+	protected void actionPerformedBtnconsultar(ActionEvent e) {
+		//
+		String modelo, talla;
+		modelo=cbmodelo.getSelectedItem().toString();
+		talla=cbtalla.getSelectedItem().toString();
+		
+		if (modelo==Modelo1 && talla=="S")
+			lblPrecioDisplay.setText(String.valueOf(Precio1_S));
+		else if (modelo==Modelo1 && talla=="M")
+			lblPrecioDisplay.setText(String.valueOf(Precio1_M));
+		else if (modelo==Modelo1 && talla=="L")
+			lblPrecioDisplay.setText(String.valueOf(Precio1_L));
+		else if (modelo==Modelo1 && talla=="XL")
+			lblPrecioDisplay.setText(String.valueOf(Precio1_XL));
+		else if(modelo==Modelo2 && talla=="S")
+			lblPrecioDisplay.setText(String.valueOf(Precio2_S));
+		else if(modelo==Modelo2 && talla=="M")
+			lblPrecioDisplay.setText(String.valueOf(Precio2_M));
+		else if(modelo==Modelo2 && talla=="L")
+			lblPrecioDisplay.setText(String.valueOf(Precio2_L));
+		else if(modelo==Modelo2 && talla=="XL")
+			lblPrecioDisplay.setText(String.valueOf(Precio2_XL));
+		
+		if (modelo==Modelo1)
+			this.lblMaterialDisplay.setText(Material_1);
+		else
+			this.lblMaterialDisplay.setText(Material_2);
 	}
 }
