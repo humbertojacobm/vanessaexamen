@@ -188,56 +188,79 @@ public class VENTA_POLOS extends JFrame implements ActionListener {
 			actionPerformedBtnagregar(e);
 		}
 	}
-	protected void actionPerformedBtnagregar(ActionEvent e) {
-		
-		
-		double precioDelProceso= Double.parseDouble(lblPrecioDisplay.getText());
-		int cantidadDelProceso= Integer.parseInt(this.tfcantidad.getText());
-		double importeCompra = precioDelProceso*cantidadDelProceso;
-		double importDescuento = 0;
+	
+	private double calcularDescuento(int cantidad) {
 		double descuento = 0;
-		double importePagar = 0;
+		
+		if(cantidad >= 1 && cantidad <= 5) {
+			descuento = Des1 * 0.01;
+		} else if(cantidad >= 6 && cantidad <= 10) {
+			descuento = Des2 * 0.01;
+		} else if(cantidad >= 11 && cantidad <= 15) {
+			descuento = Des3 * 0.01;
+		} else {
+			descuento = Des4 * 0.01;
+		}
+		
+		return descuento;
+	}
+
+	private String determinarObsequio(int cantidad) {
 		String obsequio = "";
 		
-		if(cantidadDelProceso>=1 && cantidadDelProceso<=5) {
-			descuento=Des1*0.01;
-		}else if(cantidadDelProceso>=6 && cantidadDelProceso<=10) {
-			descuento=Des2*0.01;
-		}else if(cantidadDelProceso>=11 && cantidadDelProceso<=15) {
-			descuento=Des3*0.01;
-		}else {
-			descuento=Des4*0.01;
-		}
-		
-		importDescuento = importeCompra * descuento;
-		
-		importePagar = importeCompra - importDescuento;
-		
-		if(cantidadDelProceso==1) {
+		if(cantidad == 1) {
 			obsequio = Obs1;
-		}else if(cantidadDelProceso>1 && cantidadDelProceso<=5) {
+		} else if(cantidad > 1 && cantidad <= 5) {
 			obsequio = Obs2;
-		}else if(cantidadDelProceso>=6) {
+		} else if(cantidad >= 6) {
 			obsequio = Obs3;
 		}
+		
+		return obsequio;
+	}
+
+	private void createVentaReport(String modelo, String talla, String material, 
+			double precio, int cantidad, double importeCompra, 
+			double importDescuento, double importePagar, String obsequio) {
 		
 		txtVentaReporte.setText(""); 
 		
 		txtVentaReporte.append("BOLETA DE VENTA\n");
 		txtVentaReporte.append("-----------------------------\n");
 		
-		txtVentaReporte.append("MODELO: " + cbmodelo.getSelectedItem().toString() + "\n");
-		txtVentaReporte.append("TALLA: "+ cbtalla.getSelectedItem().toString() +"\n");
-		txtVentaReporte.append("MATERIAL: " + lblMaterialDisplay.getText() + "\n");
-		txtVentaReporte.append("PRECIO: S/. " + cantidadDelProceso + "\n");
-		txtVentaReporte.append("CANTIDAD: S/. " + precioDelProceso + "\n");
+		txtVentaReporte.append("MODELO: " + modelo + "\n");
+		txtVentaReporte.append("TALLA: " + talla + "\n");
+		txtVentaReporte.append("MATERIAL: " + material + "\n");
+		txtVentaReporte.append("PRECIO: S/. " + precio + "\n");
+		txtVentaReporte.append("CANTIDAD: " + cantidad + "\n");
 		txtVentaReporte.append("IMPORTE COMPRA: S/. " + importeCompra + "\n");
 		txtVentaReporte.append("IMPORTE DESCUENTO: S/. " + importDescuento + "\n");
 		txtVentaReporte.append("IMPORTE A PAGAR: S/. " + importePagar + "\n");
 		txtVentaReporte.append("OBSEQUIO: " + obsequio + "\n");
 		txtVentaReporte.append("-----------------------------\n");
-		
 	}
+
+	protected void actionPerformedBtnagregar(ActionEvent e) {
+		
+		double precioDelProceso = Double.parseDouble(lblPrecioDisplay.getText());
+		int cantidadDelProceso = Integer.parseInt(this.tfcantidad.getText());
+		double importeCompra = precioDelProceso * cantidadDelProceso;
+		double importDescuento = 0;
+		double descuento = calcularDescuento(cantidadDelProceso);
+		double importePagar = 0;
+		String obsequio = determinarObsequio(cantidadDelProceso);
+		
+		importDescuento = importeCompra * descuento;
+		importePagar = importeCompra - importDescuento;
+		
+		String modelo = cbmodelo.getSelectedItem().toString();
+		String talla = cbtalla.getSelectedItem().toString();
+		String material = lblMaterialDisplay.getText();
+		
+		createVentaReport(modelo, talla, material, precioDelProceso, cantidadDelProceso,
+				importeCompra, importDescuento, importePagar, obsequio);
+	}
+	
 	protected void actionPerformedBtnCERRAR(ActionEvent e) {
 		this.dispose();
 	}
